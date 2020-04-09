@@ -3,8 +3,8 @@
 	<HEAD>
 		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<TITLE>Place</TITLE>
-		<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-		<link rel="stylesheet" href="/css/main.css">
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/main.css">
 	</HEAD>
 	<BODY>
 		<div><CANVAS ID="canvas_1" tabindex="0">Place</CANVAS><div>
@@ -15,10 +15,13 @@
 			<div class="mydiv" style="left: 20px; text-align: left; top: 280px;">Donat now</div>
 			<div class="mydiv" style="right: 20px; text-align: right; top: 280px;">ETH</div>
 			<input ID="edit" style="top: 276px;" maxlength="5" value="0.01">
-			<a href="https://www.unicef.org"><img src="/images/logo.png" id="logo" alt="UNICEF"></a>
+			<a href="https://www.unicef.org"><img src="images/logo.png" id="logo" alt="UNICEF"></a>
 		</div>
+		<div class="zoomP" onclick="doSize(-500, false)">+</div>
+		<div class="zoomM" onclick="doSize( 500, false)" style="top: 50px;">&#8211;</div>
+		<div id="waitpanel"></div>
 		<SCRIPT type="text/javascript">var contract_address = "0xC58A675d10BAf907bc8CF67E15988a9a56AB6009";</SCRIPT>
-		<SCRIPT type="text/javascript" src="/js/contract.js"></SCRIPT>
-		<SCRIPT type="text/javascript" src="/js/main.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="js/contract.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="js/main.js"></SCRIPT>
 	</BODY>
 </HTML>

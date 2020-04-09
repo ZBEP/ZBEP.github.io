@@ -34,6 +34,52 @@ canvas {
 	box-shadow: 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
 }
 
+.zoomP, .zoomM {
+	cursor: pointer;
+	display: block;
+	position: absolute;
+	background-color: #ECECEC;
+	color: #525454;
+	border-radius: 20px;
+	font: 1rem 'Fira Sans', sans-serif;
+	width: 24px;
+	height: 24px;
+	top: 20px;
+	right: 20px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 24px;
+	box-shadow: 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+	transition: .2s;
+}
+
+.zoomP:hover, .zoomM:hover {
+	background-color: #3d3d3d;
+	color: #ECECEC;
+	transition: .2s;
+}
+
+#waitpanel {
+	cursor: pointer;
+	display: none;
+	position: absolute;
+	background-color: #ECECEC;
+	color: #525454;
+	border-radius: 20px;
+	font: 15px 'Fira Sans', sans-serif;
+	width: 200px;
+	height: 24px;
+	bottom: 20px;
+	left: 20px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 24px;
+	//left: 50%;
+	//margin-left:-100px;
+	top: 430px;
+	box-shadow: 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+}
+
 #edit {
 	display: block;
 	position: absolute;

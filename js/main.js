@@ -44,6 +44,7 @@ var work = false;
 var pogress = 0;
 var contract;
 var metamask_exists = false;
+var waitpanel = document.getElementById('waitpanel');
 MetamaskCheck();
 
 function waitConfirm(txHash, wait_count, func_true, func_false) {
@@ -101,6 +102,21 @@ function MetamaskGetPole(_cursor,_howMany) {
 				}	
 				drawPole();
 			}
+			
+			if ( pogress == _howMany ) {
+				web3.eth.getBlockNumber(function (err, blockchain_block_num) { if(!err) {
+					contract.block_number(web3.eth.accounts[0], function(err, acc_block_num){
+						console.log("wait "+(23-(Number(blockchain_block_num)-Number(acc_block_num)))+" blocks");
+						if (!err && (Number(blockchain_block_num)-Number(acc_block_num)) < 23) {
+							waitpanel.innerHTML = "wait "+(23-(Number(blockchain_block_num)-Number(acc_block_num)))+" blocks";
+							waitpanel.style.display = "block";
+						} else {
+							waitpanel.style.display = "none";
+							waitpanel.innerHTML = "";
+						}
+					} );
+				} });
+			} else
 			if ( pogress == 1048576 ) {
 				console.log('MetamaskGetPole');
 				pogress = 0;
@@ -125,10 +141,18 @@ function Metamask_doPaint(_x, _y) {
 			if (!err) {
 				poleContext.fillStyle = select_color.value;
 				poleContext.fillRect(_x,_y,1,1);
+				waitpanel.innerHTML = "wait confirm";
+				waitpanel.style.display = "block";
 				waitConfirm(txHash, 100,
-					function confirmTrue() { MetamaskGetPole(_index,1) },
-					//function confirmTrue() { work = false },
-					function confirmFalse() { work = false }
+					function confirmTrue() {
+						waitpanel.innerHTML = "wait 23 blocks";
+						waitpanel.style.display = "block";
+						MetamaskGetPole(_index,1)
+					},
+					function confirmFalse() {
+						work = false;
+						waitpanel.style.display = "none";
+					}
 				)
 			} else {
 				work = false;
@@ -174,11 +198,21 @@ function generatePalette(palette) {
 
 function doWheel(e) {
 	var delta = ( e.deltaY || e.detail || e.wheelDelta ) / (1024/size);
+	doSize(delta, true);
+}
+
+function doSize(delta, repos) {
 	var oldsize = size;
+	if ( repos == false )  delta = delta / (1024/size);
 	if ( size - delta > 0.2 && size - delta < 100 ) size -= delta;
 	if ( size != oldsize ) {
-		posx += (delta * ( (event.clientX - posx)/oldsize ) );
-		posy += (delta * ( (event.clientY - posy)/oldsize ) );
+		if ( repos == true ){
+			posx += (delta * ( (event.clientX - posx)/oldsize ) );
+			posy += (delta * ( (event.clientY - posy)/oldsize ) );
+		} else {
+			posx += (delta * ( (canvas.width / 2 - posx)/oldsize ) );
+			posy += (delta * ( (canvas.height / 2 - posy)/oldsize ) );
+		}
 		drawPole();
 	}
 }
