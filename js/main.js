@@ -72,10 +72,30 @@ function MetamaskCheck(){
 		ethereum.enable();
 		contract = web3.eth.contract(contract_abi).at(contract_address);
 		metamask_exists = true;
-		for(let i = 0; i < 512; i++) MetamaskGetPole(i*2048,2048);
+		MetamaskGetBlocksNum(true);
 	} else {
 		drawPole();
 	}
+}
+
+function MetamaskGetBlocksNum(get_all_pixels) {
+	web3.eth.getBlockNumber(function (err, blockchain_block_num) {
+		if(!err) {
+			contract.block_number(web3.eth.accounts[0], function(err, acc_block_num){
+				console.log("wait "+(23-(Number(blockchain_block_num)-Number(acc_block_num)))+" blocks");
+				if (!err && (Number(blockchain_block_num)-Number(acc_block_num)) < 23) {
+					waitpanel.innerHTML = "wait "+(23-(Number(blockchain_block_num)-Number(acc_block_num)))+" blocks";
+					waitpanel.style.display = "block";
+				} else {
+					waitpanel.style.display = "none";
+					waitpanel.innerHTML = "";
+				}
+				if ( get_all_pixels == true ) { for(let i = 0; i < 512; i++) MetamaskGetPole(i*2048,2048) }
+			} );
+		} else {
+			if ( get_all_pixels == true ) { for(let i = 0; i < 512; i++) MetamaskGetPole(i*2048,2048) }
+		}
+	});
 }
 
 function MetamaskGetPole(_cursor,_howMany) {
@@ -103,24 +123,10 @@ function MetamaskGetPole(_cursor,_howMany) {
 				drawPole();
 			}
 			
-			if ( _cursor == 0 ) {
-				web3.eth.getBlockNumber(function (err, blockchain_block_num) { if(!err) {
-					contract.block_number(web3.eth.accounts[0], function(err, acc_block_num){
-						console.log("wait "+(23-(Number(blockchain_block_num)-Number(acc_block_num)))+" blocks");
-						if (!err && (Number(blockchain_block_num)-Number(acc_block_num)) < 23) {
-							waitpanel.innerHTML = "wait "+(23-(Number(blockchain_block_num)-Number(acc_block_num)))+" blocks";
-							waitpanel.style.display = "block";
-						} else {
-							waitpanel.style.display = "none";
-							waitpanel.innerHTML = "";
-						}
-					} );
-				} });
-			}
-			
 			if ( pogress == 1048576 ) {
 				console.log('MetamaskGetPole');
 				pogress = 0;
+				MetamaskGetBlocksNum(false);
 				timerMetamask = setTimeout(onTimerMetamask, 30000);
 			}
 		} );
