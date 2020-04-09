@@ -103,7 +103,7 @@ function MetamaskGetPole(_cursor,_howMany) {
 				drawPole();
 			}
 			
-			if ( pogress == _howMany ) {
+			if ( _cursor == 0 ) {
 				web3.eth.getBlockNumber(function (err, blockchain_block_num) { if(!err) {
 					contract.block_number(web3.eth.accounts[0], function(err, acc_block_num){
 						console.log("wait "+(23-(Number(blockchain_block_num)-Number(acc_block_num)))+" blocks");
@@ -116,7 +116,8 @@ function MetamaskGetPole(_cursor,_howMany) {
 						}
 					} );
 				} });
-			} else
+			}
+			
 			if ( pogress == 1048576 ) {
 				console.log('MetamaskGetPole');
 				pogress = 0;
