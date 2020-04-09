@@ -1,5 +1,3 @@
-//var contract_address = "0x37a5f4093739A363d1715105567c3b551C154376"; //testnet
-var contract_address = "0xdC90E96B6F2833B14700Bf82Efa532528CC14635";
 var contract_abi = [
 	{
 		"inputs": [
