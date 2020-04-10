@@ -45,6 +45,7 @@ var pogress = 0;
 var contract;
 var metamask_exists = false;
 var waitpanel = document.getElementById('waitpanel');
+var connect_m = document.getElementById('connect_m');
 MetamaskCheck();
 
 function waitConfirm(txHash, wait_count, func_true, func_false) {
@@ -67,12 +68,15 @@ function waitConfirm(txHash, wait_count, func_true, func_false) {
 
 function MetamaskCheck(){
 	//Проверка наличия метамаска
+	connect_m.style.display = "block";
 	if (typeof web3 !== "undefined") {
 		window.web3 = new Web3(window.ethereum);
-		ethereum.enable();
-		contract = web3.eth.contract(contract_abi).at(contract_address);
-		metamask_exists = true;
-		MetamaskGetBlocksNum(true);
+		ethereum.enable().then( function() {
+			contract = web3.eth.contract(contract_abi).at(contract_address);
+			connect_m.style.display = "none";
+			metamask_exists = true;
+			MetamaskGetBlocksNum(true);	
+		} );
 	} else {
 		drawPole();
 	}
@@ -93,7 +97,7 @@ function MetamaskGetBlocksNum(get_all_pixels) {
 				if ( get_all_pixels == true ) { for(let i = 0; i < 512; i++) MetamaskGetPole(i*2048,2048) }
 			} );
 		} else {
-			if ( get_all_pixels == true ) { for(let i = 0; i < 512; i++) MetamaskGetPole(i*2048,2048) }
+			//if ( get_all_pixels == true ) { connect_m.style.display = "none"; }
 		}
 	});
 }
@@ -240,13 +244,6 @@ function drawPole() {
 	if ( pre_x >= 0 && pre_y >= 0 && pre_x < 1024 && pre_y < 1024 )
 	canvas_context.fillRect(pre_x, pre_y, 1, 1);
     canvas_context.restore();	
-	
-	if ( metamask_exists == false ) {
-		canvas_context.textAlign='center';
-		canvas_context.font = "42px Courier New";
-		canvas_context.fillStyle = "#000000";
-		canvas_context.fillText("NEED METAMASK", canvas.width / 2, 70);
-	}
 }
 
 function doContextMenu(e) {

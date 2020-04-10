@@ -80,6 +80,33 @@ canvas {
 	box-shadow: 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
 }
 
+#connect_m {
+	cursor: pointer;
+	display: none;
+	position: absolute;
+	background-color: #ECECEC;
+	color: #000000;
+	border-radius: 20px;
+	font: 18px 'Fira Sans', sans-serif;
+	width: 200px;
+	height: 48px;
+	bottom: 20px;
+	left: 50%;
+	margin-left:-100px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 48px;
+	bottom: 20px;
+	box-shadow: 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+	transition: .2s;
+}
+
+#connect_m:hover {
+	background-color: #3d3d3d;
+	color: #ECECEC;
+	transition: .2s;
+}
+
 #edit {
 	display: block;
 	position: absolute;
