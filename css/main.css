@@ -83,7 +83,7 @@ canvas {
 #edit {
 	display: block;
 	position: absolute;
-	font: 1rem 'Fira Sans', sans-serif;
+	font: 14px 'Fira Sans', sans-serif;
 	background-color: #ECECEC;
 	text-align: right;
 	width: 41px;
@@ -136,8 +136,7 @@ canvas {
 	display: block;
 	position: absolute;
 	color: #525454;
-	font: 1rem 'Fira Sans', sans-serif;
-	font-size: 16px;
+	font: 14px 'Fira Sans', sans-serif;
 	text-align: center;
 	width: 200px;
 	top: 21px;
