@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ссылка удалена</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        .language-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .language-buttons button {
+            padding: 5px 7px;
+            font-size: 10px;
+            border: 1px solid #ddd;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .language-buttons button:hover {
+            background-color: #e0e0e0;
+            border-color: #ccc;
+        }
+        .language-buttons button:active {
+            background-color: #d0d0d0;
+            border-color: #bbb;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        function changeLanguage(languageCode) {
+            const languages = {
+                "ru": {
+                    "title": "Ссылка удалена",
+                    "message": "Ссылка на скачивание была убрана по просьбе правообладателя."
+                },
+                "en": {
+                    "title": "Link Removed",
+                    "message": "The download link has been removed at the request of the copyright holder."
+                },
+                "zh": {
+                    "title": "链接已删除",
+                    "message": "应版权持有者的要求，下载链接已被删除。"
+                },
+                "hi": {
+                    "title": "लिंक हटा दिया गया",
+                    "message": "कॉपीराइट धारक के अनुरोध पर डाउनलोड लिंक हटा दिया गया है।"
+                },
+                "es": {
+                    "title": "Enlace eliminado",
+                    "message": "El enlace de descarga ha sido eliminado a petición del titular de los derechos de autor."
+                },
+                "fr": {
+                    "title": "Lien supprimé",
+                    "message": "Le lien de téléchargement a été supprimé à la demande du titulaire des droits d'auteur."
+                },
+                "ar": {
+                    "title": "تمت إزالة الرابط",
+                    "message": "تمت إزالة رابط التحميل بناءً على طلب صاحب حقوق الطبع والنشر."
+                },
+                "bn": {
+                    "title": "লিংক সরানো হয়েছে",
+                    "message": "কপিরাইট ধারকের অনুরোধে ডাউনলোড লিঙ্কটি সরানো হয়েছে।"
+                },
+                "pt": {
+                    "title": "Link Removido",
+                    "message": "O link de download foi removido a pedido do titular dos direitos autorais."
+                },
+                "id": {
+                    "title": "Tautan Dihapus",
+                    "message": "Tautan unduhan telah dihapus atas permintaan pemegang hak cipta."
+                }
+            };
+            
+            document.getElementById("title").textContent = languages[languageCode].title;
+            document.getElementById("message").textContent = languages[languageCode].message;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Ссылка удалена</h1>
+        <p id="message">Ссылка на скачивание была убрана по просьбе правообладателя.</p>
+    </div>
+    <div class="language-buttons">
+        <button onclick="changeLanguage('ru')">RU</button>
+        <button onclick="changeLanguage('en')">EN</button>
+        <button onclick="changeLanguage('zh')">ZH</button>
+        <button onclick="changeLanguage('hi')">HI</button>
+        <button onclick="changeLanguage('es')">ES</button>
+		<button onclick="changeLanguage('fr')">FR</button>
+        <button onclick="changeLanguage('ar')">AR</button>
+        <button onclick="changeLanguage('bn')">BN</button>
+        <button onclick="changeLanguage('pt')">PT</button>
+        <button onclick="changeLanguage('id')">ID</button>
+    </div>
+</body>
+</html>
